@@ -16,14 +16,16 @@ function App() {
     return (
         <div style={backgroundStyle} className="flex flex-row p-[1.5vh]">
             <div className="w-full bg-light flex rounded-xl">
-                <div className="w-1/12 h-full">
-                    <div className="container-fluid items-center bg-primaryGray">
-                        <a className="navbar-brand ms-2" href="/">
-                            <h3>Agenda</h3>
-                        </a>
-                        <span className="navbar-brand mb-0 h2">
-                            <a className="nav-link pe-0 " href="/events/add">Add Event</a>
-                        </span>
+                <div className="w-1/12 h-full bg-primaryBlue text-white rounded-l-xl">
+                    <div className="container-fluid items-center">
+                        <div>
+                            <a href="/">
+                                <h3>Agenda</h3>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="/events/add">Add Event</a>
+                        </div>
                     </div>
                 </div>
                 <div className="w-11/12 h-full">
