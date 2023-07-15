@@ -9,6 +9,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Popping from './Popping';
 import {closeEvent, ShowEventApi, ShowEventsApi} from "../redux/Actions/index"
 import { connect } from 'react-redux'
+import "./Calendar.css";
 
 const locales = {
     'en-US': enUS,
@@ -65,7 +66,7 @@ const MyCalendar = ({events, ShowEventApi, closeEvent, ShowEventsApi}) => {
                 events={events}
                 startAccessor="start"
                 endAccessor="end"
-                style={{ height: 500 , margin: 50 }}
+                className="w-full h-[97vh] p-10 pt-5 px-6"
                 onSelectEvent={openEventClick}
             />
         </div>
