@@ -15,7 +15,7 @@ const backgroundStyle = {
 function App() {
     return (
         <div style={backgroundStyle} className="flex flex-row p-[1.5vh]">
-            <div className="w-full bg-light flex rounded-xl">
+            <div className="w-full bg-white flex rounded-xl">
                 <div className="w-1/12 h-full bg-primaryBlue text-white rounded-l-xl">
                     <div className="container-fluid items-center">
                         <div>
@@ -28,12 +28,20 @@ function App() {
                         </div>
                     </div>
                 </div>
-                <div className="w-11/12 h-full">
+                <div className="w-8/12 h-full p-8 pb-4">
                     <Routes>
                         <Route path="/" exact element={<MyCalendar/>} />
                         <Route path="/events/add" element={<AddEvents/>}/>
                         <Route path="/event/:id/update" element={<UpdateEvent/>}/>
                     </Routes>
+                </div>
+                <div className="w-3/12 h-full bg-primaryGray p-8 flex flex-1 flex-col rounded-r-xl">
+                    <div className='h-1/12'>
+                        <h1 className='text-xl font-bold'>Upcoming Tasks</h1>
+                    </div>
+                    <div className='overflow-y-auto h-11/12'>
+                        Haloo
+                    </div>
                 </div>
             </div>
         </div>

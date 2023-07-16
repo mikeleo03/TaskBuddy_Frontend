@@ -23,6 +23,7 @@
 .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
     color: #ffffff;
     background-color: #5358e2;
+    border: none;
 }
 
 .rbc-toolbar button {
@@ -124,9 +125,8 @@
     box-shadow: none;
     margin: 0;
     padding: 0.1rem 15px;
-    background-color: #5358e2;
-    border-radius: 5px;
-    color: #fff;
+    background:#5358e2a2;
+    color: #ffffff;
     cursor: pointer;
     width: 100%;
     text-align: left;
@@ -135,4 +135,8 @@
 
 .rbc-event.rbc-selected, .rbc-day-slot .rbc-selected.rbc-background-event {
     background-color: #3c42e8;
+}
+
+.rbc-row-segment {
+    padding: 0 1px 1px 1px;
 }

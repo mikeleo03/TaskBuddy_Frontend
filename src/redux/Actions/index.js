@@ -1,6 +1,6 @@
 import { 
     ShowEventApi,
-    ShowEventsApi ,
+    ShowEventsApi,
     addEventApi,
     updateEventApi,
     deleteEventApi,
