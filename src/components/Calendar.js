@@ -11,8 +11,6 @@ import {closeEvent, ShowEventApi, ShowEventsApi } from "../redux/Actions/index"
 import { connect } from 'react-redux'
 import "./Calendar.css";
 
-const url = process.env.REACT_APP_BACKEND_URL_DEV;
-
 const locales = {
     'en-US': enUS,
 }
@@ -30,48 +28,15 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, ShowEventsApi }) => {
     // States
     const [open, setOpen] = useState(false);
     const [renderStatus, rerender] = useState(false);
-    const [eventData, setEventData] = useState([]);
-
-    const compareByEndDate = (a, b) => {
-        const dateA = new Date(a.end);
-        const dateB = new Date(b.end);
-        return dateA - dateB;
-    };
 
     useEffect(() => {
         ShowEventsApi()
         console.log("i rendered because of refresh or start");
-        fetch(url + "/api/events", {
-            method: "GET",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                // Update state
-                data.sort(compareByEndDate);
-                console.log(data);
-                setEventData(data);
-            });
     }, [])
 
     useEffect(() => {
         ShowEventsApi()
         console.log("i rendered");
-        fetch(url + "/api/events/", {
-            method: "GET",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                // Update state
-                data.sort(compareByEndDate);
-                console.log(data);
-                setEventData(data);
-            });
     }, [renderStatus])
    
     // Click event
@@ -105,7 +70,7 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, ShowEventsApi }) => {
                     events={events}
                     startAccessor="start"
                     endAccessor="end"
-                    className="w-full h-11/12"
+                    className="w-full"
                     onSelectEvent={openEventClick}
                     views={['month', 'week', 'day']} 
                     defaultView='month'
