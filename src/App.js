@@ -4,6 +4,8 @@ import AddEvents from "./components/AddEvents";
 import UpdateEvent from "./components/UpdateEvent";
 import TaskCard from "./components/TaskCard";
 import Sidebar from './components/Sidebar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const url = process.env.REACT_APP_BACKEND_URL_DEV;
 
@@ -52,6 +54,7 @@ function App() {
 
     return (
         <div style={backgroundStyle} className="flex flex-row p-[1.5vh]">
+            <ToastContainer />
             <div className="w-full bg-white flex rounded-xl">
                 <div className="w-1/12 h-full bg-primaryBlue text-white rounded-l-xl">
                     <Sidebar page={page} setPage={setPage} />

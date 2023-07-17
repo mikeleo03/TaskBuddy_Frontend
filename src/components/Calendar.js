@@ -64,7 +64,7 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, ShowEventsApi, page, set
             />
             <div className="h-full w-full">
                 <div className='h-1/12 w-full'>
-                    <h1 className='text-3xl font-bold'>Tasks Calendar</h1>
+                    <h1 className='text-2xl font-bold'>Tasks Calendar</h1>
                 </div>
                 <Calendar
                     localizer={localizer}

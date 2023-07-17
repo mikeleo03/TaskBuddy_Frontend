@@ -25,7 +25,11 @@ const Popping = ({open, handleClose, event, deleteEventApi, renderStatus, rerend
                     <Modal.Title className="text-capitalize">{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="px-4">
-                    {describe? <p className="lead">{describe}</p>: "No Dsecriptions Yet"}
+                    {describe ? (
+                        <p className="lead" dangerouslySetInnerHTML={{ __html: describe.replace(/\n/g, "<br />") }}></p>
+                    ) : (
+                        "No Descriptions Yet"
+                    )}
                     <div className="row justify-content-between mt-4">
                         <p className="col small text-muted text-center pb-0 mb-0">from: {start}</p>
                         <p className="col small text-muted text-center pb-0 mb-0">to: {end}</p>
