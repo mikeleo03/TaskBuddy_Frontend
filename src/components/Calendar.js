@@ -24,7 +24,7 @@ const localizer = dateFnsLocalizer({
 })
 
 // Calendar scheme
-const MyCalendar = ({ events, ShowEventApi, closeEvent, ShowEventsApi }) => {
+const MyCalendar = ({ events, ShowEventApi, closeEvent, ShowEventsApi, page, setPage }) => {
     // States
     const [open, setOpen] = useState(false);
     const [renderStatus, rerender] = useState(false);
@@ -60,6 +60,7 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, ShowEventsApi }) => {
                 handleClose={closeEventClick} 
                 renderStatus = {renderStatus} 
                 rerender= {rerender}
+                setPage={setPage}
             />
             <div className="h-full w-full">
                 <div className='h-1/12 w-full'>

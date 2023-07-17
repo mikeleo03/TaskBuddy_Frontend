@@ -6,12 +6,16 @@ import {Link} from "react-router-dom"
 import { deleteEventApi, closeEvent } from "../redux/Actions/index";
 
 // Popping components
-const Popping = ({open, handleClose, event, deleteEventApi, renderStatus, rerender}) => {
+const Popping = ({open, handleClose, event, deleteEventApi, renderStatus, rerender, setPage }) => {
     const {id, describe, title, start, end} = event;
 
-    const handleDelete =async () => {
+    const handleDelete = async () => {
         await deleteEventApi(event.id);
         rerender(!renderStatus)
+    }
+
+    const handleSet = () => {
+        setPage("Edit");
     }
 
     // Popup modals
@@ -30,9 +34,7 @@ const Popping = ({open, handleClose, event, deleteEventApi, renderStatus, rerend
                 </Modal.Body>
                 <Modal.Footer className="px-4">
                     <Button variant="warning" onClick={handleClose} className="text-black hover:text-white">Close</Button>
-                    <Link to={`/event/${id}/update`}>
-                        <Button variant="success" className="text-black">Update</Button>
-                    </Link>
+                    <Button variant="success" onClick={handleSet} className="text-black">Update</Button>
                     <Button variant="danger" onClick={handleDelete} className="text-black">Delete</Button>
                 </Modal.Footer>
             </Modal>

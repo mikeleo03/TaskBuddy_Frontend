@@ -4,6 +4,7 @@ import MyCalendar from "./components/Calendar";
 import AddEvents from "./components/AddEvents";
 import UpdateEvent from "./components/UpdateEvent";
 import TaskCard from "./components/TaskCard";
+import Sidebar from './components/Sidebar';
 
 const url = process.env.REACT_APP_BACKEND_URL_DEV;
 
@@ -16,6 +17,8 @@ const backgroundStyle = {
 }
 
 function App() {
+    // Page switching handler
+    const [page, setPage] = useState("Home");
     const [eventData, setEventData] = useState([]);
 
     const compareByEndDate = (a, b) => {
@@ -35,7 +38,13 @@ function App() {
             .then((res) => res.json())
             .then((data) => {
                 // Update state
-                data.sort(compareByEndDate);
+                // Filter just by the deadline
+                data.filter(event => {
+                    const finishDate = new Date(event.end);
+                    return finishDate.getTime() > Date.now();
+                })
+                // Then sort by nearest dl
+                .sort(compareByEndDate);
                 console.log(data);
                 setEventData(data);
             });
@@ -45,23 +54,12 @@ function App() {
         <div style={backgroundStyle} className="flex flex-row p-[1.5vh]">
             <div className="w-full bg-white flex rounded-xl">
                 <div className="w-1/12 h-full bg-primaryBlue text-white rounded-l-xl">
-                    <div className="container-fluid items-center">
-                        <div>
-                            <a href="/">
-                                <h3>Agenda</h3>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="/events/add">Add Event</a>
-                        </div>
-                    </div>
+                    <Sidebar page={page} setPage={setPage} />
                 </div>
                 <div className="w-8/12 h-full p-8 pb-4">
-                    <Routes>
-                        <Route path="/" exact element={<MyCalendar/>} />
-                        <Route path="/events/add" element={<AddEvents/>}/>
-                        <Route path="/event/:id/update" element={<UpdateEvent/>}/>
-                    </Routes>
+                    {page === "Home" && <MyCalendar page={page} setPage={setPage}/>}
+                    {page === "Add" && <AddEvents/>}
+                    {page === "Edit" && <UpdateEvent setPage={setPage}/>}
                 </div>
                 <div className="w-3/12 h-full bg-primaryGray p-8 flex flex-1 flex-col rounded-r-xl">
                     <div className='h-1/12'>

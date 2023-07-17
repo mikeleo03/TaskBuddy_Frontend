@@ -16,7 +16,7 @@ const schema = yup.object({
 }).required();
 
 // Update event components
-const UpdateEvent = ({updateEventApi, event, error}) => {
+const UpdateEvent = ({updateEventApi, event, error, setPage}) => {
     // Program states
     const navigate = useNavigate();
     const [rerender, setRerender] = useState(false);
@@ -52,7 +52,7 @@ const UpdateEvent = ({updateEventApi, event, error}) => {
             console.log(res);
             setRerender(!rerender);
             if (res === "response was successful") {
-                navigate("/")
+                setPage('Home');
             }
         })
     }
