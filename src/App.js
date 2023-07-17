@@ -38,16 +38,17 @@ function App() {
             .then((data) => {
                 // Update state
                 // Filter just by the deadline
-                data.filter(event => {
+                data = data.filter(event => {
                     const finishDate = new Date(event.end);
                     return finishDate.getTime() > Date.now();
                 })
+                console.log(data);
                 // Then sort by nearest dl
-                .sort(compareByEndDate);
+                data.sort(compareByEndDate);
                 console.log(data);
                 setEventData(data);
             });
-    }, [eventData])
+    }, [])
 
     return (
         <div style={backgroundStyle} className="flex flex-row p-[1.5vh]">
@@ -57,12 +58,12 @@ function App() {
                 </div>
                 <div className="w-8/12 h-full p-8 pb-4">
                     {page === "Home" && <MyCalendar page={page} setPage={setPage}/>}
-                    {page === "Add" && <AddEvents/>}
+                    {page === "Add" && <AddEvents setPage={setPage}/>}
                     {page === "Edit" && <UpdateEvent setPage={setPage}/>}
                 </div>
                 <div className="w-3/12 h-full bg-primaryGray p-8 flex flex-1 flex-col rounded-r-xl">
                     <div className='h-1/12'>
-                        <h1 className='text-xl font-bold'>Upcoming Tasks</h1>
+                        <h1 className='text-xl font-bold'>Upcoming Deadlines!</h1>
                     </div>
                     <div className='overflow-y-auto h-11/12'>
                         {eventData[0] ? (

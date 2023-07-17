@@ -7,9 +7,9 @@ const TasksCard = ({ title, start, end }) => {
                 </svg>
             </div>
             <div className='w-5/6 pl-1'>
-                <h1 className='font-medium text-xl'>{title}</h1>
-                <span className='font-semibold text-base'>Start : </span>{start}<br></br>
-                <span className='font-semibold text-base'>End : </span>{end}<br></br>
+                <h1 className='font-medium text-lg'>{title}</h1>
+                <span className='font-semibold text-sm'>Start : </span><span className="text-sm">{start}</span><br></br>
+                <span className='font-semibold text-sm'>End : </span><span className="text-sm">{end}</span><br></br>
             </div>
         </div>
     )

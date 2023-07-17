@@ -15,7 +15,7 @@ const schema = yup.object({
 }).required();
 
 // To handle adding events
-const AddEvents = ({addEventApi, error}) => {
+const AddEvents = ({addEventApi, error, setPage}) => {
     // States
     const navigate = useNavigate()
     const [rerender, setRerender] = useState(false);
@@ -40,7 +40,8 @@ const AddEvents = ({addEventApi, error}) => {
         setFirstRender(false)
         addEventApi(values)
         .then(()=>{
-            setRerender(!rerender)
+            setRerender(!rerender);
+            setPage("Home");
         })
     }
 
