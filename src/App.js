@@ -20,6 +20,7 @@ const backgroundStyle = {
 function App() {
     // Page switching handler
     const [page, setPage] = useState("Home");
+    const [eventTrig, setEventTrig] = useState(false);
     const [eventData, setEventData] = useState([]);
 
     const compareByEndDate = (a, b) => {
@@ -50,7 +51,7 @@ function App() {
                 console.log(data);
                 setEventData(data);
             });
-    }, [])
+    }, [eventTrig])
 
     return (
         <div style={backgroundStyle} className="flex flex-row p-[1.5vh]">
@@ -61,7 +62,7 @@ function App() {
                 </div>
                 <div className="w-8/12 h-full p-8 pb-4">
                     {page === "Home" && <MyCalendar page={page} setPage={setPage}/>}
-                    {page === "Add" && <AddEvents setPage={setPage}/>}
+                    {page === "Add" && <AddEvents setPage={setPage} eventTrig={eventTrig} setEventTrig={setEventTrig}/>}
                     {page === "Edit" && <UpdateEvent setPage={setPage}/>}
                 </div>
                 <div className="w-3/12 h-full bg-primaryGray p-8 flex flex-1 flex-col rounded-r-xl">

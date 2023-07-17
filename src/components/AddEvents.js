@@ -16,7 +16,7 @@ const schema = yup.object({
 }).required();
 
 // To handle adding events
-const AddEvents = ({addEventApi, error, setPage}) => {
+const AddEvents = ({addEventApi, error, setPage, eventTrig, setEventTrig}) => {
     // States
     const navigate = useNavigate()
     const [rerender, setRerender] = useState(false);
@@ -42,6 +42,7 @@ const AddEvents = ({addEventApi, error, setPage}) => {
         addEventApi(values)
         .then(()=>{
             setRerender(!rerender);
+            setEventTrig(!eventTrig);
             setPage("Home");
             toast.success("New task is successfully added!", {
                 position: toast.POSITION.TOP_RIGHT
