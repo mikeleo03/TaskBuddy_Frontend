@@ -2,7 +2,6 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import React from "react";
 import { connect } from "react-redux";
-import {Link} from "react-router-dom"
 import { deleteEventApi, closeEvent } from "../redux/Actions/index";
 
 // Popping components

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
 import MyCalendar from "./components/Calendar";
 import AddEvents from "./components/AddEvents";
 import UpdateEvent from "./components/UpdateEvent";
@@ -48,7 +47,7 @@ function App() {
                 console.log(data);
                 setEventData(data);
             });
-    }, [])
+    }, [eventData])
 
     return (
         <div style={backgroundStyle} className="flex flex-row p-[1.5vh]">

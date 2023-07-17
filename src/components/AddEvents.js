@@ -44,7 +44,6 @@ const AddEvents = ({addEventApi, error}) => {
         })
     }
 
-
     return (
         // Implementation using bootstrap
         <form onSubmit={handleSubmit(onSubmit)} className=" align-content-center m-5">

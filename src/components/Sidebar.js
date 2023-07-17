@@ -35,17 +35,17 @@ const Sidebar = ({ page, setPage }) => {
             <nav
                 className="top-0 left-0 w-full h-full bg-primaryBlue rounded-l-xl">
                 <div className="flex flex-col h-full w-full">
-                    <div className='h-20 flex items-center px-6 pt-3 w-full'>
+                    {/* <div className='h-20 flex items-center px-6 pt-3 w-full'>
                         <a href='/' className='flex-none pl-2'>
                             <h1 className='text-3xl font-bold text-light'>Atur.in</h1>
                             <h3 className='text-sm font-semibold text-light'>Perencana jadwal Anda</h3>
                         </a>
-                    </div>
-                    <div className="flex-1 flex flex-col h-full w-full overflow-auto mt-2">
+                    </div> */}
+                    <div className="flex-1 flex flex-col h-full w-full overflow-auto mt-2 overflow-hidden">
                         <ul className="pl-4 text-sm font-medium flex-1 w-full">
                             {
                                 navigation.map((item, idx) => (
-                                    <li key={idx} className={`py-1.5 my-3 rounded-l-xl hover:bg-primaryYellow duration-150 w-full  ${page === item.pageName ? "bg-primaryYellow font-bold" : ""}`}>
+                                    <li key={idx} className={`py-1.5 my-3 rounded-l-xl hover:bg-primaryYellow duration-150 w-full ${page === item.pageName ? "bg-primaryYellow font-bold" : ""}`}>
                                         <button onClick={() => setPage(item.pageName)} className={`flex flex-col w-full items-center gap-x-2 text-gray-600 p-2 rounded-l-xl active:bg-primaryYellow active:border-none duration-150`}>
                                             <div className="text-gray-500">{item.icon}</div>
                                             <div className="text-light">{item.name}</div>
@@ -55,7 +55,7 @@ const Sidebar = ({ page, setPage }) => {
                             }
                         </ul>
                         <div>
-                            <ul className="pl-4 pb-4 text-sm font-medium">
+                            <ul className="pl-2 pb-4 text-sm font-medium">
                                 {
                                     navsFooter.map((item, idx) => (
                                         <li key={idx} className="my-2 pl-2">
