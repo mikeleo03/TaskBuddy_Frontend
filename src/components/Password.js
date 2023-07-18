@@ -6,7 +6,7 @@ import axios from "axios";
 
 const url = process.env.REACT_APP_BACKEND_URL_DEV;
 
-const PasswordPrompt = ({ setPage, saveEdit, setSaveEdit, renderStatus, rerender, deleteEventApi }) => {
+const PasswordPrompt = ({ setPage, saveEdit, setSaveEdit, renderStatus, rerender, deleteEventApi, eventTrig, setEventTrig }) => {
     const [password, setPassword] = useState('');
 
     const handlePasswordChange = (event) => {
@@ -27,6 +27,7 @@ const PasswordPrompt = ({ setPage, saveEdit, setSaveEdit, renderStatus, rerender
                 if (saveEdit.id === 1) {
                     deleteEventApi(saveEdit.value);
                     rerender(!renderStatus);
+                    setEventTrig(!eventTrig);
                     setPage("Home");
                 } else if (saveEdit.id === 2) {
                     setPage("Edit");

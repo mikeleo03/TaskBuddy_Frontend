@@ -151,7 +151,8 @@ const AddEvents = ({addEventApi, error, setPage, eventTrig, setEventTrig}) => {
 
 
 function mapStateToProps({event, error}){
-    return{
+    return {
+        event,
         error  // event
     }
 }

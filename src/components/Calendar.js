@@ -31,8 +31,10 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, setPage, setSaveEdit }) 
     // Click event
     const openEventClick = (event) => {
         setOpen(true);
-        if(event.id) {
-            ShowEventApi(event.id);
+        console.log(event);
+        const id = event.id || event._id
+        if (id) {
+            ShowEventApi(id);
         }
         return;
     }
