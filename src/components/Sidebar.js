@@ -1,5 +1,5 @@
 // Sidebar component
-const Sidebar = ({ page, setPage }) => {
+const Sidebar = ({ page, setPage, saveEdit, setSaveEdit }) => {
 
     const navigation = [
         {
@@ -30,6 +30,13 @@ const Sidebar = ({ page, setPage }) => {
         }
     ]
 
+    const handleSelect = ({ pageName }) => {
+        if (pageName !== "Add") {
+            setSaveEdit({ id: 3, value : null });
+            setPage("Pass");
+        }
+    };
+
     return (
         <nav className="top-0 left-0 w-full h-full bg-primaryBlue md:rounded-l-xl">
             <div className="flex flex-col h-full w-full md:overflow-hidden">
@@ -38,7 +45,7 @@ const Sidebar = ({ page, setPage }) => {
                     {
                         navigation.map((item, idx) => (
                             <div key={idx} className={`py-1.5 my-3 rounded-l-xl hover:bg-primaryYellow duration-150 w-20 ${page === item.pageName ? "bg-primaryYellow font-bold" : ""}`}>
-                                <button onClick={() => setPage(item.pageName)} className={`flex flex-col w-full items-center gap-x-2 text-gray-600 p-2 rounded-l-xl active:bg-primaryYellow active:border-none duration-150`}>
+                                <button onClick={() => handleSelect(item.pageName)} className={`flex flex-col w-full items-center gap-x-2 text-gray-600 p-2 rounded-l-xl active:bg-primaryYellow active:border-none duration-150`}>
                                     <div className="text-gray-500">{item.icon}</div>
                                     <div className="text-light">{item.name}</div>
                                 </button>

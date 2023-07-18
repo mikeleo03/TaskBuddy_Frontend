@@ -4,8 +4,11 @@ import AddEvents from "./components/AddEvents";
 import UpdateEvent from "./components/UpdateEvent";
 import TaskCard from "./components/TaskCard";
 import Sidebar from './components/Sidebar';
+import Password from './components/Password';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ShowEventsApi } from "./redux/Actions/index"
+import { connect } from 'react-redux'
 
 const url = process.env.REACT_APP_BACKEND_URL_DEV;
 
@@ -17,11 +20,13 @@ const backgroundStyle = {
     maxHeight: "100vh",
 }
 
-function App() {
+function App({ ShowEventsApi }) {
     // Page switching handler
     const [page, setPage] = useState("Home");
+    const [saveEdit, setSaveEdit] = useState();
     const [eventTrig, setEventTrig] = useState(false);
     const [eventData, setEventData] = useState([]);
+    const [renderStatus, rerender] = useState(false);
 
     const compareByEndDate = (a, b) => {
         const dateA = new Date(a.end);
@@ -53,17 +58,28 @@ function App() {
             });
     }, [eventTrig])
 
+    useEffect(() => {
+        ShowEventsApi()
+        console.log("i rendered because of refresh or start");
+    }, [])
+
+    useEffect(() => {
+        ShowEventsApi()
+        console.log("i rendered");
+    }, [renderStatus])
+
     return (
         <div style={backgroundStyle} className="flex flex-row md:p-[1.5vh]">
             <ToastContainer />
             <div className="w-full md:h-full h-auto bg-white flex md:flex-row flex-col rounded-xl">
                 <div className="w-1/12 h-full md:relative sticky top-0 md:z-0 z-50 md:w-auto w-full bg-primaryBlue text-white rounded-l-xl">
-                    <Sidebar page={page} setPage={setPage} />
+                    <Sidebar page={page} setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit}/>
                 </div>
                 <div className="md:w-8/12 w-full h-full md:p-8 p-4 pb-4 md:mb-0 mb-4">
-                    {page === "Home" && <MyCalendar page={page} setPage={setPage}/>}
+                    {page === "Home" && <MyCalendar setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit}/>}
                     {page === "Add" && <AddEvents setPage={setPage} eventTrig={eventTrig} setEventTrig={setEventTrig}/>}
                     {page === "Edit" && <UpdateEvent setPage={setPage}/>}
+                    {page === "Pass" && <Password setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit} renderStatus={renderStatus} rerender={rerender} />}
                 </div>
                 <div className="md:w-3/12 w-full h-full bg-primaryGray p-8 flex flex-1 flex-col rounded-r-xl">
                     <div className='h-1/8 xl:h-1/12 mb-0 md:block hidden'>
@@ -112,5 +128,11 @@ function App() {
     );
 }
 
+function mapStateToProps({event, events}){
+    return{
+        event,
+        events
+    }
+}
 
-export default App;
+export default connect(mapStateToProps, { ShowEventsApi }) (App)

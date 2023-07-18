@@ -2,19 +2,20 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import React from "react";
 import { connect } from "react-redux";
-import { deleteEventApi, closeEvent } from "../redux/Actions/index";
+import { closeEvent } from "../redux/Actions/index";
 
 // Popping components
-const Popping = ({open, handleClose, event, deleteEventApi, renderStatus, rerender, setPage }) => {
+const Popping = ({ open, handleClose, event, setPage, setSaveEdit }) => {
     const {id, describe, title, start, end} = event;
 
     const handleDelete = async () => {
-        await deleteEventApi(event.id);
-        rerender(!renderStatus)
+        setSaveEdit({ id: 1, value : event.id });
+        setPage("Pass");
     }
 
     const handleSet = () => {
-        setPage("Edit");
+        setSaveEdit({ id: 2, value : event.id });
+        setPage("Pass");
     }
 
     function makeLinksClickable(text) {
@@ -69,4 +70,4 @@ function mapStateToProps({event}){
     }
 }
   
-export default connect(mapStateToProps, {deleteEventApi, closeEvent}) (Popping)
+export default connect(mapStateToProps, {closeEvent}) (Popping)

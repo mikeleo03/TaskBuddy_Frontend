@@ -7,7 +7,7 @@ import getDay from 'date-fns/getDay'
 import enUS from 'date-fns/locale/en-US'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Popping from './Popping';
-import {closeEvent, ShowEventApi, ShowEventsApi } from "../redux/Actions/index"
+import {closeEvent, ShowEventApi } from "../redux/Actions/index"
 import { connect } from 'react-redux'
 import "./Calendar.css";
 
@@ -24,23 +24,12 @@ const localizer = dateFnsLocalizer({
 })
 
 // Calendar scheme
-const MyCalendar = ({ events, ShowEventApi, closeEvent, ShowEventsApi, page, setPage }) => {
+const MyCalendar = ({ events, ShowEventApi, closeEvent, setPage, setSaveEdit }) => {
     // States
     const [open, setOpen] = useState(false);
-    const [renderStatus, rerender] = useState(false);
-
-    useEffect(() => {
-        ShowEventsApi()
-        console.log("i rendered because of refresh or start");
-    }, [])
-
-    useEffect(() => {
-        ShowEventsApi()
-        console.log("i rendered");
-    }, [renderStatus])
    
     // Click event
-    const openEventClick = (event)=>{
+    const openEventClick = (event) => {
         setOpen(true);
         if(event.id) {
             ShowEventApi(event.id);
@@ -48,7 +37,7 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, ShowEventsApi, page, set
         return;
     }
 
-    const closeEventClick = () =>{
+    const closeEventClick = () => {
         setOpen(false);
         setTimeout(() => closeEvent(), 200);
     }
@@ -56,11 +45,9 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, ShowEventsApi, page, set
     return (
         <>
             <Popping open={open}
-                handleOpen={openEventClick} 
                 handleClose={closeEventClick} 
-                renderStatus = {renderStatus} 
-                rerender= {rerender}
                 setPage={setPage}
+                setSaveEdit={setSaveEdit}
             />
             <div className="md:h-full h-[35rem] w-full">
                 <div className='h-1/12 w-full'>
@@ -88,4 +75,4 @@ function mapStateToProps({event, events}){
     }
 }
 
-export default connect(mapStateToProps, {ShowEventApi, closeEvent, ShowEventsApi })(MyCalendar)
+export default connect(mapStateToProps, { ShowEventApi, closeEvent })(MyCalendar)
