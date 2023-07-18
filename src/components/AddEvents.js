@@ -138,12 +138,10 @@ const AddEvents = ({addEventApi, error, setPage, eventTrig, setEventTrig}) => {
                     >
                     </textarea>
                 </div>
-                <button
-                    className="px-10 py-1.5 text-white font-medium bg-primaryBlue hover:bg-indigo-400 active:bg-indigo-600 rounded-lg duration-150"
-                    type="submit"
-                >
-                    Create
-                </button>
+                <div className="w-full">
+                    <button className="md:px-10 px-8 py-1.5 text-white font-medium bg-primaryBlue hover:bg-indigo-400 active:bg-indigo-600 rounded-lg duration-150 mr-4" type="submit">Create</button>
+                    <button className="md:px-10 px-8 py-1.5 text-white font-medium bg-indigo-400 hover:bg-indigo-400 active:bg-indigo-600 rounded-lg duration-150" onClick={() => setPage("Home")}>Cancel</button>
+                </div>
             </form>
         </>
     )

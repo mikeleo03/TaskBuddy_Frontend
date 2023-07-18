@@ -54,11 +54,26 @@ const PasswordPrompt = ({ setPage, saveEdit, setSaveEdit, renderStatus, rerender
     };
 
     return (
-        <div>
-            <h3>Enter your password to continue:</h3>
-            <input type="password" value={password} onChange={handlePasswordChange} />
-            <button onClick={() => handleConfirm(password)}>Confirm</button>
-            <button onClick={handleCancel}>Cancel</button>
+        <div className="w-full md:h-[35rem] h-150 flex flex-col items-center justify-center">
+            <div className="w-full md:py-5 py-4 md:px-5 px-4 h-full space-y-4 rounded-xl bg-light">
+                <div className='w-full'>
+                    <h1 className='text-xl font-bold'>Password</h1>
+                    <h3 className='text-lg py-1.5 font-semibold text-primaryBlue'>Password is required to do an update</h3>
+                </div>
+                <div className="w-full">
+                    <input 
+                        required
+                        type="password" 
+                        value={password} 
+                        onChange={handlePasswordChange}
+                        className="form-control w-full py-2 appearance-none bg-transparent outline-none border rounded-xl"
+                    />
+                </div>
+                <div className="w-full">
+                    <button className="md:px-10 px-8 py-1.5 text-white font-medium bg-primaryBlue hover:bg-indigo-400 active:bg-indigo-600 rounded-lg duration-150 mr-4" onClick={() => handleConfirm(password)}>Confirm</button>
+                    <button className="md:px-10 px-8 py-1.5 text-white font-medium bg-indigo-400 hover:bg-indigo-400 active:bg-indigo-600 rounded-lg duration-150" onClick={handleCancel}>Cancel</button>
+                </div>
+            </div>
         </div>
     );
 };
