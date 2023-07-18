@@ -60,8 +60,8 @@ const AddEvents = ({addEventApi, error, setPage, eventTrig, setEventTrig}) => {
             <form onSubmit={handleSubmit(onSubmit)} className=" align-content-center">
                 <div className="mb-[2rem]">
                     <label htmlFor="title" className="form-label">Task Title</label>
-                    <input {...register("title")}  type="text" placeholder="Insert the task title" className="form-control w-full py-2 appearance-none bg-transparent outline-none border rounded-xl" id="title" aria-describedby="title" />
-                    <p className={`error text-warning position-absolute ${errors.title?"active":""}`}>{errors.title?<i className="bi bi-info-circle me-2"></i>:""}{"Title " + errors.title?.message}</p>
+                    <input {...register("title")} type="text" placeholder="Insert the task title" className="form-control w-full py-2 appearance-none bg-transparent outline-none border rounded-xl" id="title" aria-describedby="title" />
+                    <p className={`error text-warning position-absolute ${errors.title?"active":""}`}>{errors.title?<i className="bi bi-info-circle me-2"></i>:""}{errors.title !== undefined ? ("Title " + errors.title?.message) : ("")}</p>
                 </div>
                 <div className="mb-[2rem] flex flex-row">
                     <div className="w-1/2 flex flex-col pr-4">
