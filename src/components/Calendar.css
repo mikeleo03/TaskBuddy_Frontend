@@ -53,8 +53,16 @@
     flex-grow: 1;
     padding: 0 10px;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    .rbc-btn-group,
+    .rbc-toolbar-label {
+      display: block; /* Ensure each span takes up a new line */
+      margin-bottom: 7px; /* Add spacing between each span */
+    }
 }
 
 .rbc-month-view {

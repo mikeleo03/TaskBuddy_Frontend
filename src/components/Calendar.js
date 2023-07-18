@@ -62,7 +62,7 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, ShowEventsApi, page, set
                 rerender= {rerender}
                 setPage={setPage}
             />
-            <div className="h-full w-full">
+            <div className="md:h-full h-[35rem] w-full">
                 <div className='h-1/12 w-full'>
                     <h1 className='text-2xl font-bold'>Tasks Calendar</h1>
                 </div>

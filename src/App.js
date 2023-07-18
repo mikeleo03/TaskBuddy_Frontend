@@ -54,22 +54,25 @@ function App() {
     }, [eventTrig])
 
     return (
-        <div style={backgroundStyle} className="flex flex-row p-[1.5vh]">
+        <div style={backgroundStyle} className="flex flex-row md:p-[1.5vh]">
             <ToastContainer />
-            <div className="w-full bg-white flex rounded-xl">
-                <div className="w-1/12 h-full bg-primaryBlue text-white rounded-l-xl">
+            <div className="w-full md:h-full h-auto bg-white flex md:flex-row flex-col rounded-xl">
+                <div className="w-1/12 h-full md:relative sticky top-0 md:z-0 z-50 md:w-auto w-full bg-primaryBlue text-white rounded-l-xl">
                     <Sidebar page={page} setPage={setPage} />
                 </div>
-                <div className="w-8/12 h-full p-8 pb-4">
+                <div className="md:w-8/12 w-full h-full md:p-8 p-4 pb-4 md:mb-0 mb-4">
                     {page === "Home" && <MyCalendar page={page} setPage={setPage}/>}
                     {page === "Add" && <AddEvents setPage={setPage} eventTrig={eventTrig} setEventTrig={setEventTrig}/>}
                     {page === "Edit" && <UpdateEvent setPage={setPage}/>}
                 </div>
-                <div className="w-3/12 h-full bg-primaryGray p-8 flex flex-1 flex-col rounded-r-xl">
-                    <div className='h-1/12'>
+                <div className="md:w-3/12 w-full h-full bg-primaryGray p-8 flex flex-1 flex-col rounded-r-xl">
+                    <div className='h-1/8 xl:h-1/12 mb-0 md:block hidden'>
                         <h1 className='text-xl font-bold'>Upcoming Deadlines!</h1>
                     </div>
-                    <div className='overflow-y-auto h-11/12'>
+                    <div className='h-1/8 xl:h-1/12 mb-4 md:hidden block'>
+                        <h1 className='text-xl font-bold'>Upcoming Deadlines!</h1>
+                    </div>
+                    <div className='md:overflow-y-auto md:h-7/8 xl:h-11/12'>
                         {eventData[0] ? (
                             eventData.map((event, index) => {
                                 const startDate = new Date(event.start);

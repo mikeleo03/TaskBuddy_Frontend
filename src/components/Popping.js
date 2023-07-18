@@ -20,7 +20,7 @@ const Popping = ({open, handleClose, event, deleteEventApi, renderStatus, rerend
     function makeLinksClickable(text) {
         const urlRegex = /(https?:\/\/[^\s]+)/g;
         const linesWithLinks = text.split("\n").map((line) => {
-            const lineWithLink = line.replace(urlRegex, (url) => `<a href="${url}" className="text-indigo-700" target="_blank">${url}</a>`);
+            const lineWithLink = line.replace(urlRegex, (url) => `<a href="${url}" class="tooltip-test" title="Tooltip" target="_blank">${url}</a>`);
             return lineWithLink;
         });
         return linesWithLinks.join("<br />");
@@ -35,7 +35,7 @@ const Popping = ({open, handleClose, event, deleteEventApi, renderStatus, rerend
                 <Modal.Header closeButton className="bg-primaryBlue text-white px-4">
                     <Modal.Title className="text-capitalize">{title}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="px-4">
+                <Modal.Body className="px-4 break-words">
                     {descriptionWithClickableLinks ? (
                         <p className="lead" dangerouslySetInnerHTML={{ __html: descriptionWithClickableLinks }}></p>
                     ) : (
