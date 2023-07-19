@@ -17,7 +17,7 @@ const schema = yup.object({
 }).required();
 
 // Update event components
-const UpdateEvent = ({updateEventApi, event, error, setPage}) => {
+const UpdateEvent = ({updateEventApi, event, error, setPage, eventTrig, setEventTrig}) => {
     // Program states
     const navigate = useNavigate();
     const [rerender, setRerender] = useState(false);
@@ -52,11 +52,12 @@ const UpdateEvent = ({updateEventApi, event, error, setPage}) => {
         .then(res=> {
             console.log(res);
             setRerender(!rerender);
+            setEventTrig(!eventTrig);
             if (res === "response was successful") {
-                setPage('Home');
-                toast.success("Task is successfully updated!", {
-                    position: toast.POSITION.TOP_RIGHT
-                });
+                // Reload
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
             } else {
                 toast.error(res, {
                     position: toast.POSITION.TOP_RIGHT

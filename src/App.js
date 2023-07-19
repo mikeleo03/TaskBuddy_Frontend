@@ -78,7 +78,7 @@ function App({ ShowEventsApi }) {
                 <div className="md:w-8/12 w-full h-full md:p-8 p-4 pb-4 md:mb-0 mb-4">
                     {page === "Home" && <MyCalendar setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit}/>}
                     {page === "Add" && <AddEvents setPage={setPage} eventTrig={eventTrig} setEventTrig={setEventTrig}/>}
-                    {page === "Edit" && <UpdateEvent setPage={setPage}/>}
+                    {page === "Edit" && <UpdateEvent setPage={setPage} eventTrig={eventTrig} setEventTrig={setEventTrig}/>}
                     {page === "Pass" && <Password setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit} renderStatus={renderStatus} rerender={rerender} eventTrig={eventTrig} setEventTrig={setEventTrig} />}
                 </div>
                 <div className="md:w-3/12 w-full h-full bg-primaryGray p-8 flex flex-1 flex-col rounded-r-xl">

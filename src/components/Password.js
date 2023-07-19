@@ -26,9 +26,10 @@ const PasswordPrompt = ({ setPage, saveEdit, setSaveEdit, renderStatus, rerender
                 // Call the API route for edit action 
                 if (saveEdit.id === 1) {
                     deleteEventApi(saveEdit.value);
-                    rerender(!renderStatus);
-                    setEventTrig(!eventTrig);
-                    setPage("Home");
+                    // Reload
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 500);
                 } else if (saveEdit.id === 2) {
                     setPage("Edit");
                 } else if (saveEdit.id === 3) {

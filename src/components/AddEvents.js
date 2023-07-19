@@ -40,13 +40,11 @@ const AddEvents = ({addEventApi, error, setPage, eventTrig, setEventTrig}) => {
     const onSubmit = async(values) => {
         setFirstRender(false)
         addEventApi(values)
-        .then(()=>{
-            setRerender(!rerender);
-            setEventTrig(!eventTrig);
-            setPage("Home");
-            toast.success("New task is successfully added!", {
-                position: toast.POSITION.TOP_RIGHT
-            });
+        .then(() => {
+            // Reload
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
         })
     }
 
