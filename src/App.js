@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ShowEventsApi } from "./redux/Actions/index"
 import { connect } from 'react-redux'
+import axios from "axios";
 
 const url = process.env.REACT_APP_BACKEND_URL;
 
@@ -36,12 +37,7 @@ function App({ ShowEventsApi }) {
 
     useEffect(() => {
         console.log("i rendered because of refresh or start");
-        fetch(url + "/api/events", {
-            method: "GET",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
+        axios.get(url + "/api/events")
             .then((res) => res.json())
             .then((data) => {
                 // Update state
