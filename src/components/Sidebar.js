@@ -31,7 +31,6 @@ const Sidebar = ({ page, setPage, saveEdit, setSaveEdit }) => {
     ]
 
     const handleSelect = (pageName) => {
-        console.log(pageName);
         if (pageName === "Add") {
             setSaveEdit({ id: 3, value : null });
             setPage("Pass");

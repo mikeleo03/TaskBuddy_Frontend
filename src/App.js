@@ -33,7 +33,6 @@ function App({ ShowEventsApi }) {
     };
 
     useEffect(() => {
-        console.log("i rendered because of refresh or start");
         fetch(url + "/api/events", {
             method: "GET",
             headers: {
@@ -48,17 +47,14 @@ function App({ ShowEventsApi }) {
                     const finishDate = new Date(event.end);
                     return finishDate.getTime() > Date.now();
                 })
-                console.log(data);
                 // Then sort by nearest dl
-                data.sort(compareByEndDate);
-                console.log(data);
+                data.sort(compareByEndDate); 
                 setEventData(data);
             });
     }, [])
 
     useEffect(() => {
         ShowEventsApi()
-        console.log("i rendered because of refresh or start");
     }, [ShowEventsApi])
 
     return (

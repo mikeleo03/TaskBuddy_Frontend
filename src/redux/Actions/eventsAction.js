@@ -4,7 +4,6 @@ import * as moment from "moment"
 import { addError, removeError } from "./errorsAction"
 
 export const showEvent = (event) => {
-    console.log("event to be shown on the modal: ", event)
     return {
         type: "SHOW_EVENT",
         payload: event
@@ -39,7 +38,6 @@ export const ShowEventApi = id => async dispatch => {
 }
 
 export const ShowEventsApi = () => async dispatch => {
-    console.log("started fetching the api")
     const result = await event.get("/");
 
     try {
@@ -75,7 +73,6 @@ export const deleteEventApi = (id) => async dispatch => {
         return {deleted}
     } catch(err){
         const message = await result.data.message;
-        console.log(message)
         return {message}
     }
 }
@@ -88,7 +85,7 @@ const addEvent = (newEvent) => {
 }
 
 export const addEventApi = (values) => async dispatch => {
-    const result = await event.post("/", {
+    await event.post("/", {
         title: values.title,
         start: values.start,
         end: values.end,
@@ -96,45 +93,30 @@ export const addEventApi = (values) => async dispatch => {
     })
         .then (res => {
             if (res && res.data) {
-                console.log("event from the api going to the reducer: ", res.data)
                 dispatch(addEvent(res.data)) 
                 dispatch(removeError())
                 
                 return "success";
             }
         })
-        .catch(res=>{
-            console.log("catch response, ", res)
+        .catch(res => {
             if (res.response.data) {
-                console.log(res.response.data)
                 dispatch(addError(res.response.data));
             }
         })
-    console.log(result);
-}
-
-const updateEvent = (updatedEvent)=>{
-    return {
-        type: "UPDATE_EVENT",
-        payload: updatedEvent
-    }
 }
 
 export const updateEventApi = (values, id) => async dispatch =>{
     try {
-        const result = await event.put(`/${id}/update`, {
+        await event.put(`/${id}/update`, {
             title: values.title,
             start: values.start,
             end: values.end,
             describe: values.describe
         })
-        console.log(result);
-        const response = result.data;
-        console.log(response);
         dispatch(removeError())
         return "response was successful";
     } catch(err) {
-        console.log(err)
         dispatch(addError(err.response.data));
     }
 }
