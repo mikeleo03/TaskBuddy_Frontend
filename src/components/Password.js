@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { toast } from 'react-toastify';
 import axios from "axios";
 
-const url = process.env.REACT_APP_BACKEND_URL_DEV;
+const url = process.env.REACT_APP_BACKEND_URL;
 
 const PasswordPrompt = ({ setPage, saveEdit, setSaveEdit, renderStatus, rerender, deleteEventApi, eventTrig, setEventTrig }) => {
     const [password, setPassword] = useState('');

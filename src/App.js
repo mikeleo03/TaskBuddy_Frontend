@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ShowEventsApi } from "./redux/Actions/index"
 import { connect } from 'react-redux'
 
-const url = process.env.REACT_APP_BACKEND_URL_DEV;
+const url = process.env.REACT_APP_BACKEND_URL;
 
 const backgroundStyle = {
     backgroundColor : "#ECEEF9",
