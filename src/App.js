@@ -24,9 +24,7 @@ function App({ ShowEventsApi }) {
     // Page switching handler
     const [page, setPage] = useState("Home");
     const [saveEdit, setSaveEdit] = useState();
-    const [eventTrig, setEventTrig] = useState(false);
     const [eventData, setEventData] = useState([]);
-    const [renderStatus, rerender] = useState(false);
 
     const compareByEndDate = (a, b) => {
         const dateA = new Date(a.end);
@@ -56,17 +54,12 @@ function App({ ShowEventsApi }) {
                 console.log(data);
                 setEventData(data);
             });
-    }, [eventTrig])
-
-    useEffect(() => {
-        ShowEventsApi()
-        console.log("i rendered because of refresh or start");
     }, [])
 
     useEffect(() => {
         ShowEventsApi()
-        console.log("i rendered");
-    }, [renderStatus])
+        console.log("i rendered because of refresh or start");
+    }, [ShowEventsApi])
 
     return (
         <div style={backgroundStyle} className="flex flex-row md:p-[1.5vh]">
@@ -77,9 +70,9 @@ function App({ ShowEventsApi }) {
                 </div>
                 <div className="md:w-8/12 w-full h-full md:p-8 p-4 pb-4 md:mb-0 mb-4">
                     {page === "Home" && <MyCalendar setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit}/>}
-                    {page === "Add" && <AddEvents setPage={setPage} eventTrig={eventTrig} setEventTrig={setEventTrig}/>}
-                    {page === "Edit" && <UpdateEvent setPage={setPage} eventTrig={eventTrig} setEventTrig={setEventTrig}/>}
-                    {page === "Pass" && <Password setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit} renderStatus={renderStatus} rerender={rerender} eventTrig={eventTrig} setEventTrig={setEventTrig} />}
+                    {page === "Add" && <AddEvents setPage={setPage} />}
+                    {page === "Edit" && <UpdateEvent setPage={setPage} />}
+                    {page === "Pass" && <Password setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit} />}
                 </div>
                 <div className="md:w-3/12 w-full h-full bg-primaryGray p-8 flex flex-1 flex-col rounded-r-xl">
                     <div className='h-1/8 xl:h-1/12 mb-0 md:block hidden'>

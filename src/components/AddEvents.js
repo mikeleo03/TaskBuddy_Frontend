@@ -7,7 +7,6 @@ import { addEventApi } from "../redux/Actions/index";
 import { connect } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
 
 // Schema to validate event inputs 
 const schema = yup.object({
@@ -16,21 +15,20 @@ const schema = yup.object({
 }).required();
 
 // To handle adding events
-const AddEvents = ({addEventApi, error, setPage, eventTrig, setEventTrig}) => {
+const AddEvents = ({ addEventApi, error, setPage }) => {
     // States
     const navigate = useNavigate()
-    const [rerender, setRerender] = useState(false);
     const [dbError, setError] = useState(false)
     const [firstRender, setFirstRender] = useState(true)
  
-    useEffect( ()=>{
+    useEffect(() => {
         if (error && !firstRender) {
             setError(error)
         }
         if (!error.start && !error.end && dbError !== false) {
             setTimeout(navigate("/")) 
         }
-    }, [rerender, dbError, error, firstRender, navigate])
+    }, [dbError, error, firstRender, navigate])
 
     // Using form-hook to register event data
     const { register, handleSubmit, formState: {errors}, control } = useForm({
@@ -66,7 +64,7 @@ const AddEvents = ({addEventApi, error, setPage, eventTrig, setEventTrig}) => {
                         <div>
                             <label htmlFor="start" className="form-label">Start Date</label>
                         </div>
-                        {/* Controllers are the way you can wrap and use datePicker inside react form-hook*/}
+                    
                         {/* Start date controller*/}
                         <div className="w-full">
                             <Controller
@@ -87,7 +85,8 @@ const AddEvents = ({addEventApi, error, setPage, eventTrig, setEventTrig}) => {
                                 )}
                             />
                         </div>
-                        {/* error handling */}
+
+                        {/* Error handling */}
                         <div>
                             <p className={`error text-warning position-absolute ${errors.start?"active":""}`}>{errors.start?<i className=" bi bi-info-circle me-2"></i>:""}{errors.start?.message}</p>
                             <p className={`error text-warning position-absolute ${dbError.start?"":"d-none"}`}>{dbError.start?<i className=" bi bi-info-circle me-2"></i>:""}{dbError.start}</p>
@@ -97,7 +96,8 @@ const AddEvents = ({addEventApi, error, setPage, eventTrig, setEventTrig}) => {
                         <div>
                             <label htmlFor="end" className="form-label">End Date</label>
                         </div>
-                        {/* end date controller*/}
+
+                        {/* End date controller*/}
                         <div className="rounded-xl">
                             <Controller
                                 control={control}
@@ -144,7 +144,6 @@ const AddEvents = ({addEventApi, error, setPage, eventTrig, setEventTrig}) => {
         </>
     )
 }
-
 
 function mapStateToProps({event, error}){
     return {

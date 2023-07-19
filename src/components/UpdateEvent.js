@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -17,7 +17,7 @@ const schema = yup.object({
 }).required();
 
 // Update event components
-const UpdateEvent = ({updateEventApi, event, error, setPage, eventTrig, setEventTrig}) => {
+const UpdateEvent = ({ updateEventApi, event, error, setPage }) => {
     // Program states
     const navigate = useNavigate();
     const [rerender, setRerender] = useState(false);
@@ -52,7 +52,6 @@ const UpdateEvent = ({updateEventApi, event, error, setPage, eventTrig, setEvent
         .then(res=> {
             console.log(res);
             setRerender(!rerender);
-            setEventTrig(!eventTrig);
             if (res === "response was successful") {
                 // Reload
                 setTimeout(() => {
@@ -83,7 +82,7 @@ const UpdateEvent = ({updateEventApi, event, error, setPage, eventTrig, setEvent
                         <div>
                             <label htmlFor="start" className="form-label">Start Date</label>
                         </div>
-                        {/* Controllers are the way you can wrap and use datePicker inside react form-hook*/}
+
                         {/* Start date controller*/}
                         <div className="w-full">
                             <Controller
@@ -104,7 +103,8 @@ const UpdateEvent = ({updateEventApi, event, error, setPage, eventTrig, setEvent
                                 )}
                             />
                         </div>
-                        {/* error handling */}
+
+                        {/* Error handling */}
                         <div>
                             <p className={`error text-warning position-absolute ${errors.start?"active":""}`}>{errors.start?<i className=" bi bi-info-circle me-2"></i>:""}{errors.start?.message}</p>
                             <p className={`error text-warning position-absolute ${dbError.start?"":"d-none"}`}>{dbError.start?<i className=" bi bi-info-circle me-2"></i>:""}{dbError.start}</p>
@@ -114,7 +114,8 @@ const UpdateEvent = ({updateEventApi, event, error, setPage, eventTrig, setEvent
                         <div>
                             <label htmlFor="end" className="form-label">End Date</label>
                         </div>
-                        {/* end date controller*/}
+
+                        {/* End date controller*/}
                         <div className="rounded-xl">
                             <Controller
                                 control={control}
@@ -162,11 +163,11 @@ const UpdateEvent = ({updateEventApi, event, error, setPage, eventTrig, setEvent
     )
 }
 
-function mapStateToProps({event, error}){
+function mapStateToProps({ event, error }){
     return{
         event,
         error
     }
 }
 
-export default connect(mapStateToProps , {updateEventApi, ShowEventsApi})(UpdateEvent)
+export default connect(mapStateToProps , {updateEventApi, ShowEventsApi}) (UpdateEvent)

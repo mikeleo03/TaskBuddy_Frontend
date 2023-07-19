@@ -6,7 +6,7 @@ import axios from "axios";
 
 const url = process.env.REACT_APP_BACKEND_URL;
 
-const PasswordPrompt = ({ setPage, saveEdit, setSaveEdit, renderStatus, rerender, deleteEventApi, eventTrig, setEventTrig }) => {
+const PasswordPrompt = ({ setPage, saveEdit, setSaveEdit, deleteEventApi }) => {
     const [password, setPassword] = useState('');
 
     const handlePasswordChange = (event) => {
@@ -17,9 +17,7 @@ const PasswordPrompt = ({ setPage, saveEdit, setSaveEdit, renderStatus, rerender
         // Validate the password (you can send it to the backend for validation)
         try {
             // Replace 'your_api_route' with the actual API endpoint for password validation
-            console.log(password);
             const response = await axios.post(url + '/api/validate', { password });
-            console.log(response);
         
             // If the password is valid, perform the edit action
             if (response.data.valid) {

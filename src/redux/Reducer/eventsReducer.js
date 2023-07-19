@@ -1,6 +1,6 @@
 const initialValue = []
 
-const EventsReducer = (state=initialValue, action) => {
+const EventsReducer = (state = initialValue, action) => {
     // Switch case
     switch (action.type) {
         case "SHOW_EVENTS":

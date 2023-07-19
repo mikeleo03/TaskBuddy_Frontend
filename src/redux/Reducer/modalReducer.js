@@ -1,6 +1,6 @@
 const initialValue = false
 
-const modalReducer = (state=initialValue, action)=>{
+const modalReducer = (state = initialValue, action)=>{
     // Swich case
     switch (action.type) {
         case "OPEN_MODAL":

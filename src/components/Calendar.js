@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
@@ -7,9 +7,9 @@ import getDay from 'date-fns/getDay'
 import enUS from 'date-fns/locale/en-US'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Popping from './Popping';
-import {closeEvent, ShowEventApi } from "../redux/Actions/index"
+import { closeEvent, ShowEventApi } from "../redux/Actions/index"
 import { connect } from 'react-redux'
-import "./Calendar.css";
+import "../style/Calendar.css";
 
 const locales = {
     'en-US': enUS,
@@ -77,4 +77,4 @@ function mapStateToProps({event, events}){
     }
 }
 
-export default connect(mapStateToProps, { ShowEventApi, closeEvent })(MyCalendar)
+export default connect(mapStateToProps, { ShowEventApi, closeEvent }) (MyCalendar)

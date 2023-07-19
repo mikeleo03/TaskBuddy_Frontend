@@ -1,4 +1,3 @@
-
 const initialValue = {
     id: "",
     start: "",
@@ -6,7 +5,7 @@ const initialValue = {
     describe: ""
 }
 
-const EventReducer = (state=initialValue, action)=>{
+const EventReducer = (state = initialValue, action) => {
     // Switch case
     switch (action.type) {
         case "SHOW_EVENT":
