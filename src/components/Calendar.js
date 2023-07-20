@@ -61,7 +61,7 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, setPage, setSaveEdit }) 
                     endAccessor="end"
                     className="w-full"
                     onSelectEvent={openEventClick}
-                    views={['month', 'week', 'day']} 
+                    view={['month']} 
                     defaultView='month'
                 />
             </div>
