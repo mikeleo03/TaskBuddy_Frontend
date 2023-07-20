@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
@@ -42,6 +42,25 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, setPage, setSaveEdit }) 
         setOpen(false);
         setTimeout(() => closeEvent(), 200);
     }
+
+    useEffect(() => {
+        const elements = document.querySelectorAll('.rbc-header span');
+        elements.forEach((element) => {
+            const text = element.textContent;
+            const trimmedText = text.slice(0, 3);
+            element.textContent = trimmedText;
+        });
+
+        const prev = document.querySelector('.rbc-btn-group > button:not(:first-child):not(:last-child)');
+        if (prev) {
+            prev.textContent = '<';
+        };
+
+        const next = document.querySelector('.rbc-btn-group > button:last-child:not(:first-child)');
+        if (next) {
+            next.textContent = '>';
+        };
+    }, []);
     
     return (
         <>
@@ -51,7 +70,7 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, setPage, setSaveEdit }) 
                 setSaveEdit={setSaveEdit}
             />
             <div className="md:h-full h-[53rem] w-full">
-                <div className='md:h-1/12 h-[3rem] w-full'>
+                <div className='h-[3rem] w-full'>
                     <h1 className='text-2xl font-bold'>Tasks Calendar</h1>
                 </div>
                 <Calendar
@@ -61,7 +80,7 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, setPage, setSaveEdit }) 
                     endAccessor="end"
                     className="w-full"
                     onSelectEvent={openEventClick}
-                    view={[]} 
+                    view={['month']} 
                     defaultView='month'
                 />
             </div>
