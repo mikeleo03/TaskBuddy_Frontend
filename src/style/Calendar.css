@@ -109,6 +109,12 @@
         z-index: 4;
         height: 7rem;
     }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 3px;
+        border-radius: 12px;
+    }
 }
 
 .rbc-month-view {
