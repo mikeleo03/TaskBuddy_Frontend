@@ -70,17 +70,21 @@
 
     .rbc-month-view {
         height: 42rem;
+        overflow-x: auto;
+        overflow-y: hidden;
     }
 
     .rbc-month-header {
         display: flex;
         flex-direction: row;
         height: 2rem;
+        width: 49rem;
     }
 
     .rbc-month-row {
         height: 7rem;
         overflow: visible;
+        width: 49rem;
     }
 
     .rbc-row-bg {
@@ -89,11 +93,13 @@
         flex: 1 0;
         overflow: hidden;
         height: 7rem;
+        width: 49rem;
     }
 
     .rbc-day-bg {
         flex: 1 0;
         height: 7rem;
+        width: 7rem;
     }
 
     .rbc-row-content {
