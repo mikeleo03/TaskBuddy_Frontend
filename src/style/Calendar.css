@@ -73,10 +73,6 @@
     border-color: #5358e2;
 }
 
-.rbc-toolbar > span:last-child {
-    display: none;
-}
-
 .rbc-toolbar button:active {
     color: #e6e6e6;
     background-color: #5358e2;
@@ -99,6 +95,14 @@
         margin-bottom: 7px; /* Add spacing between each span */
         justify-content: flex-start;
         align-items: flex-start;
+    }
+
+    .rbc-toolbar > span:last-child {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        float: right;
+        width: 100%;
     }
 
     .rbc-toolbar {
@@ -130,6 +134,12 @@
         overflow-y: hidden;
     }
 
+    .rbc-time-view {
+        height: 100%;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
     .rbc-month-header {
         display: flex;
         flex-direction: row;
@@ -152,6 +162,52 @@
         width: 49rem;
     }
 
+    .rbc-time-header-content {
+        flex: 1 1;
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        border-left: none;
+    }
+
+    .rbc-time-view .rbc-allday-cell {
+        box-sizing: content-box;
+        width: 49rem;
+        height: 100%;
+        position: relative;
+    }
+
+    .rbc-header {
+        min-height: 3px;
+    }
+
+    .rbc-time-view .rbc-row {
+        box-sizing: border-box;
+        height: 2rem;
+        width: 49rem;
+    }
+
+    .rbc-time-content > .rbc-day-slot {
+        width: 7rem;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .rbc-time-content > * + * > * {
+        width: 7rem;
+        border-left: 1px solid #ddd;
+    }
+
+    .rbc-time-content {
+        display: flex;
+        flex: 1 0;
+        align-items: flex-start;
+        width: 54rem;
+        border-top: 2px solid #ddd;
+        overflow-y: visible;
+        position: relative;
+    }
+
     .rbc-day-bg {
         flex: 1 0;
     }
@@ -162,6 +218,7 @@
         -webkit-user-select: none;
         z-index: 4;
         height: 100%;
+        width: 49rem;
     }
 
     ::-webkit-scrollbar {
@@ -180,6 +237,14 @@
     width: 100%;
     user-select: none;
     -webkit-user-select: none;
+    height: 100%;
+}
+
+.rbc-row-content {
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: 4;
     height: 100%;
 }
 
