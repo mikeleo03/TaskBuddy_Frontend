@@ -1,14 +1,19 @@
 import { useState } from "react";
 import scheduleMain from "../assets/schedule-main.png"
 
-const Splashcreen = () => {
+const Splashcreen = ({ setSplashed }) => {
     const [top, setTop] = useState(0);
+
+    const handleClick = () => {
+        setSplashed(true);
+        setTop(-2000);
+    };
 
     return (
         <div
             className={`absolute flex flex-col bg-[#ECEEF9] w-screen h-screen z-[80] justify-center items-center ease-in-out cursor-pointer space-y-3`}
             style={{top : `${top}px`, transitionDuration : "0.8s"}}
-            onClick={() => setTop(-2000)}
+            onClick={handleClick}
         >
             <div className="transition duration-150 ease-in-out">
                 <img src={scheduleMain} alt="schedule" id="schedule" className="w-40 hover:w-44 duration-150 ease-in-out"/>

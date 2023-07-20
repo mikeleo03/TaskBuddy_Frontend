@@ -13,25 +13,57 @@ import { connect } from 'react-redux'
 
 const url = process.env.REACT_APP_BACKEND_URL;
 
-const backgroundStyle = {
-    backgroundColor : "#ECEEF9",
-    height: "auto",
-    width: "100vw",
-    minHeight: "100vh",
-    maxHeight: "100vh",
-}
-
 function App({ ShowEventsApi }) {
+    // Page size
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 600);
+    const [splashed, setSplashed] = useState(false);
+
     // Page switching handler
     const [page, setPage] = useState("Home");
     const [saveEdit, setSaveEdit] = useState();
     const [eventData, setEventData] = useState([]);
+    const [open, setOpen] = useState(false);
 
     const compareByEndDate = (a, b) => {
         const dateA = new Date(a.end);
         const dateB = new Date(b.end);
         return dateA - dateB;
     };
+
+    // Function to handle window resize event
+    const backgroundStyle = {
+        backgroundColor : "#ECEEF9",
+        height: "auto",
+        width: "100vw",
+        minHeight: "100vh",
+        maxHeight: "100vh",
+    }
+    
+    const smallScreenStyle = {
+        backgroundColor : "#ECEEF9",
+        height: "auto",
+        width: "100vw",
+        ...(splashed ? 
+            {} // no props
+        : {
+            minHeight: "100vh",
+            maxHeight: "100vh",
+        }),
+    };
+
+    const handleResize = () => {
+        setIsSmallScreen(window.innerWidth <= 600);
+    };
+
+    useEffect(() => {
+        // Add event listener for window resize
+        window.addEventListener('resize', handleResize);
+
+        // Remove event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         fetch(url + "/api/events", {
@@ -60,15 +92,15 @@ function App({ ShowEventsApi }) {
 
     return (
         <>
-            <Splashscreen />
-            <div style={backgroundStyle} className="flex flex-row md:p-[1.5vh]">
-                <ToastContainer />
-                <div className="w-full md:h-full h-auto bg-white flex md:flex-row flex-col rounded-xl">
-                    <div className="w-1/12 h-full md:relative sticky top-0 md:z-0 z-50 md:w-auto w-full bg-primaryBlue text-white rounded-l-xl">
+            <Splashscreen setSplashed={setSplashed}/>
+            <div style={(isSmallScreen ? smallScreenStyle : backgroundStyle)} className="flex flex-row md:p-[1.5vh]">
+                <ToastContainer/>
+                <div className={`w-full ${splashed ? 'h-auto' : 'h-0 overflow-hidden'} bg-white flex md:flex-row flex-col rounded-xl`}>
+                    <div className="w-1/12 md:h-full h-[4.7rem] md:relative sticky top-0 md:z-0 z-50 md:w-auto w-full bg-primaryBlue text-white rounded-l-xl">
                         <Sidebar page={page} setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit}/>
                     </div>
-                    <div className="md:w-8/12 w-full h-full md:p-8 p-4 pb-4 md:mb-0 mb-4">
-                        {page === "Home" && <MyCalendar setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit}/>}
+                    <div className="md:w-8/12 w-full md:h-full h-[58rem] md:p-8 p-4 pb-4 md:mb-0 mb-4">
+                        {page === "Home" && <MyCalendar setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit} open={open} setOpen={setOpen}/>}
                         {page === "Add" && <AddEvents setPage={setPage} />}
                         {page === "Edit" && <UpdateEvent setPage={setPage} />}
                         {page === "Pass" && <Password setPage={setPage} saveEdit={saveEdit} setSaveEdit={setSaveEdit} />}
@@ -107,6 +139,11 @@ function App({ ShowEventsApi }) {
                                             title={event.title}
                                             start={formattedStartDate}
                                             end={formattedFinishDate}
+                                            id={event._id || event.id}
+                                            setPage={setPage}
+                                            setSaveEdit={setSaveEdit}
+                                            open={open}
+                                            setOpen={setOpen}
                                         />
                                     );
                                 })

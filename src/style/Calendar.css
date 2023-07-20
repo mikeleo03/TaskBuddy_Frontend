@@ -63,6 +63,46 @@
       display: block; /* Ensure each span takes up a new line */
       margin-bottom: 7px; /* Add spacing between each span */
     }
+
+    .rbc-calendar {
+        height: 53rem;
+    }
+
+    .rbc-month-view {
+        height: 42rem;
+    }
+
+    .rbc-month-header {
+        display: flex;
+        flex-direction: row;
+        height: 2rem;
+    }
+
+    .rbc-month-row {
+        height: 7rem;
+        overflow: visible;
+    }
+
+    .rbc-row-bg {
+        display: flex;
+        flex-direction: row;
+        flex: 1 0;
+        overflow: hidden;
+        height: 7rem;
+    }
+
+    .rbc-day-bg {
+        flex: 1 0;
+        height: 7rem;
+    }
+
+    .rbc-row-content {
+        position: relative;
+        user-select: none;
+        -webkit-user-select: none;
+        z-index: 4;
+        height: 7rem;
+    }
 }
 
 .rbc-month-view {
