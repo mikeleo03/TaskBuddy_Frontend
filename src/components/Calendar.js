@@ -38,6 +38,11 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, setPage, setSaveEdit }) 
         return;
     }
 
+    const selectEventClick = ({ start, end }) => {
+        setSaveEdit({ "id": 3, "value": {"start": start, "end": end} });
+        setPage("Pass");
+    }
+
     const closeEventClick = () => {
         setOpen(false);
         setTimeout(() => closeEvent(), 200);
@@ -74,12 +79,14 @@ const MyCalendar = ({ events, ShowEventApi, closeEvent, setPage, setSaveEdit }) 
                     <h1 className='text-2xl font-bold'>Tasks Calendar</h1>
                 </div>
                 <Calendar
+                    selectable
                     localizer={localizer}
                     events={events}
                     startAccessor="start"
                     endAccessor="end"
                     className="w-full"
                     onSelectEvent={openEventClick}
+                    onSelectSlot={selectEventClick}
                     views={['month', 'week']} 
                     defaultView='month'
                 />

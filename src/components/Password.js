@@ -31,6 +31,7 @@ const PasswordPrompt = ({ setPage, saveEdit, setSaveEdit, deleteEventApi }) => {
                 } else if (saveEdit.id === 2) {
                     setPage("Edit");
                 } else if (saveEdit.id === 3) {
+                    console.log(saveEdit.value);
                     setPage("Add");
                 }
                 // Reset
