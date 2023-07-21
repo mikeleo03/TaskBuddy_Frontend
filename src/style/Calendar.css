@@ -1,3 +1,13 @@
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
+    color: #000000;
+    background-color: #ffffff;
+    border-color: #5358e2;
+}
+
 .rbc-calendar {
     box-sizing: border-box;
     display: flex;
@@ -31,14 +41,14 @@
     background-image: none;
     box-shadow: none;
     background-color: #5358e2;
-    border-radius: 8.5px;
+    border: #ffffff;
     color: #ffffff;
 }
 
 .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
     color: #ffffff;
     background-color: #5358e2;
-    border: none;
+    border: #ffffff;
 }
 
 .rbc-btn-group > button:first-child:not(:last-child) {
@@ -61,7 +71,7 @@
     vertical-align: middle;
     background: none;
     background-image: none;
-    border: 1px solid;
+    /* border: 1px solid; */
     border-color: #5358e2;
     padding: 0.375rem 1rem;
     box-shadow: 5px 2px 2px rgb(235, 235, 235);
@@ -77,6 +87,12 @@
     color: #e6e6e6;
     background-color: #5358e2;
     border-color: #5358e2;
+}
+
+.rbc-toolbar button:focus {
+    color: #e6e6e6;
+    background-color: #5358e2;
+    border-color: white;
 }
 
 .rbc-date-cell {

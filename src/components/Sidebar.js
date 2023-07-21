@@ -44,8 +44,8 @@ const Sidebar = ({ page, setPage, saveEdit, setSaveEdit }) => {
                 <div className="pl-3 text-sm font-medium flex-1 w-full md:block hidden">
                     {
                         navigation.map((item, idx) => (
-                            <div key={idx} className={`py-1.5 my-3 rounded-l-xl hover:bg-primaryYellow duration-150 w-20 ${page === item.pageName ? "bg-primaryYellow font-bold" : ""}`}>
-                                <button onClick={() => handleSelect(item.pageName)} className={`flex flex-col w-full items-center gap-x-2 text-gray-600 p-2 rounded-l-xl active:bg-primaryYellow active:border-none duration-150`}>
+                            <div key={idx} className={`my-3 rounded-l-xl hover:bg-primaryYellow duration-150 w-20 ${page === item.pageName ? "bg-primaryYellow font-bold" : ""}`}>
+                                <button onClick={() => handleSelect(item.pageName)} className={`flex flex-col w-full items-center gap-x-2 text-gray-600 p-2 py-3.5 rounded-l-xl active:bg-primaryYellow active:border-none duration-150`}>
                                     <div className="text-gray-500">{item.icon}</div>
                                     <div className="text-light">{item.name}</div>
                                 </button>

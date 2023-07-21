@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-*, ::before, ::after {
-    box-sizing: border-box;
-    border: none;
+*,*:focus,*:hover{
+    outline:none;
+}
+
+button:focus:not(:focus-visible) {
+    outline: none;
 }
 
 body {
